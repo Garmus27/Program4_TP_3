@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Participante } from "../models/Participante";
 
 export default function Formulario({ onAdd }: any) {
   const [form, setForm] = useState({
@@ -40,7 +41,18 @@ export default function Formulario({ onAdd }: any) {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    onAdd({ ...form, id: Date.now() });
+    const nuevo = new Participante(
+      Date.now(),
+      form.nombre,
+      form.email,
+      form.edad,
+      form.pais,
+      form.modalidad,
+      form.tecnologias,
+      form.nivel,
+      form.aceptaTerminos
+    );
+    onAdd(nuevo);
   };
 
   return (
